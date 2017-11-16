@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "cplace curlify",
+  "version": "1.1",
+  "description": "Generate a CURL request to load a page from cplace - Icon workout by Becris from the Noun Project",
+  "homepage_url": "https://github.com/rose-m/cplace-curlify",
+  "icons": {
+    "48": "icons/icon.png",
+    "96": "icons/icon@2x.png"
+  },
+
+  "permissions": [
+    "*://*/*",
+    "cookies",
+    "tabs",
+    "clipboardWrite"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/icon.png",
+    "default_title": "cplace curlify"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+
+}
+
