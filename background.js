@@ -1,3 +1,9 @@
+let COOKIE_NAMES = [
+  'PERMANENT_COOKIE',
+  'SESSIONID',
+  'JSESSIONID'
+];
+
 /**
  * Get the currently active tab
  */
@@ -38,17 +44,31 @@ function getCookieForName(cookies, name) {
   return c.length ? c[0] : null;
 }
 
+/**
+ * Get the first cookie matching one of COOKIE_NAMES
+ * 
+ * @param {cookies.Cookie[]} cookies Array of cookies to search in
+ * @returns {cookies.Cookie} The cookie if found or null
+ */
+function getIdentificationCookie(cookies) {
+  const c = COOKIE_NAMES
+    .map(name => getCookieForName(cookies, name))
+    .filter(c => !!c);
+
+  return c.length ? c[0] : null;
+}
+
 // Register the browser action click listener
 browser.browserAction.onClicked.addListener(() => {
   getTabAndCookies()
     .then(({ tabId, url, cookies }) => {
       let command = 'curl ';
-      const c = getCookieForName(cookies, 'PERMANENT_COOKIE') || getCookieForName(cookies, 'JSESSIONID');
+      const c = getIdentificationCookie(cookies);
       if (c) {
         command += `--cookie \\"${c.name}=${c.value}\\" `;
       }
       command += url;
-      
+
       browser.tabs
         .executeScript(tabId, {
           code: `
@@ -62,6 +82,15 @@ browser.browserAction.onClicked.addListener(() => {
               input.remove();
             })();
           `
+        })
+        .then(() => {
+          browser.browserAction.setBadgeText({ tabId, text: '✓' });
+          browser.browserAction.setBadgeBackgroundColor({ tabId, color: 'green' });
+
+          setTimeout(() => {
+            browser.browserAction.setBadgeText({ tabId, text: '' });
+            browser.browserAction.setBadgeBackgroundColor({ tabId, color: '' });
+          }, 500);
         })
         .then(() => console.log('copied command', command), error => console.error(error));
     });
