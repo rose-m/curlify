@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "curlify",
-  "version": "0.1",
+  "version": "1.0.1",
   "description": "Generate a CURL request for the given page with session cookie - Icon workout by Becris from the Noun Project",
   "homepage_url": "https://github.com/rose-m/curlify",
   "icons": {
