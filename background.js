@@ -1,9 +1,3 @@
-let COOKIE_NAMES = [
-  'PERMANENT_COOKIE',
-  'SESSIONID',
-  'JSESSIONID'
-];
-
 /**
  * Get the currently active tab
  */
@@ -32,40 +26,14 @@ function getTabAndCookies() {
   });
 }
 
-/**
- * Get a cookie for a specified name if available
- * 
- * @param {cookies.Cookie[]} cookies Array of cookies to search in
- * @param {string} name Name of the cookie
- * @returns {cookies.Cookie} The cookie if found or null
- */
-function getCookieForName(cookies, name) {
-  const c = cookies.filter(c => c.name === name);
-  return c.length ? c[0] : null;
-}
-
-/**
- * Get the first cookie matching one of COOKIE_NAMES
- * 
- * @param {cookies.Cookie[]} cookies Array of cookies to search in
- * @returns {cookies.Cookie} The cookie if found or null
- */
-function getIdentificationCookie(cookies) {
-  const c = COOKIE_NAMES
-    .map(name => getCookieForName(cookies, name))
-    .filter(c => !!c);
-
-  return c.length ? c[0] : null;
-}
-
 // Register the browser action click listener
 browser.browserAction.onClicked.addListener(() => {
   getTabAndCookies()
     .then(({ tabId, url, cookies }) => {
       let command = 'curl ';
-      const c = getIdentificationCookie(cookies);
-      if (c) {
-        command += `--cookie \\"${c.name}=${c.value}\\" `;
+      const cookieString = cookies.map(c => `${c.name}=${c.value}`).join('; ');
+      if (cookieString) {
+        command += `--cookie \\"${cookieString}\\" `;
       }
       command += url;
 
