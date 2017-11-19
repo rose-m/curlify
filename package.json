@@ -1,0 +1,30 @@
+{
+  "name": "curlify",
+  "version": "1.0.0",
+  "description": "Generate a CURL request for the given page with session cookie - Icon workout by Becris from the Noun Project",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rose-m/curlify.git"
+  },
+  "keywords": [
+    "browser",
+    "extension",
+    "webextension",
+    "chrome",
+    "firefox"
+  ],
+  "author": "Michael Rose <michael_rose@gmx.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rose-m/curlify/issues"
+  },
+  "homepage": "https://github.com/rose-m/curlify#readme",
+  "dependencies": {
+    "webextension-polyfill": "^0.2.1"
+  },
+  "devDependencies": {}
+}
