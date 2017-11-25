@@ -1,0 +1,13 @@
+{
+  "permissions": [
+    "*://*/*",
+    "cookies",
+    "tabs",
+    "clipboardWrite"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
+

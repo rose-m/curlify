@@ -1,0 +1,38 @@
+{
+  "name": "curlify",
+  "version": "1.0.0",
+  "description": "Generate a CURL request for the given page with session cookie - Icon workout by Becris from the Noun Project",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:firefox",
+    "build:firefox": "cross-env CURLIFY_PLATFORM=firefox npm run build:exec",
+    "build:chrome": "cross-env CURLIFY_PLATFORM=chrome npm run build:exec && cp node_modules/webextension-polyfill/dist/browser-polyfill.min.js browser-polyfill.min.js",
+    "build:exec": "node build/manifest.js",
+    "clean": "rimraf manifest.json browser-polyfill.min.js npm-debug.log"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rose-m/curlify.git"
+  },
+  "keywords": [
+    "browser",
+    "extension",
+    "webextension",
+    "chrome",
+    "firefox"
+  ],
+  "author": "Michael Rose <michael_rose@gmx.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rose-m/curlify/issues"
+  },
+  "homepage": "https://github.com/rose-m/curlify#readme",
+  "dependencies": {
+    "webextension-polyfill": "^0.2.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.1",
+    "rimraf": "^2.6.2"
+  }
+}

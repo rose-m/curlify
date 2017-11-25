@@ -1,0 +1,15 @@
+{
+  "permissions": [
+    "*://*/*",
+    "cookies",
+    "tabs"
+  ],
+
+  "background": {
+    "scripts": [
+      "browser-polyfill.min.js",
+      "background.js"
+    ]
+  }
+}
+

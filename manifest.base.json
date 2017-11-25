@@ -9,21 +9,9 @@
     "96": "icons/icon@2x.png"
   },
 
-  "permissions": [
-    "*://*/*",
-    "cookies",
-    "tabs",
-    "clipboardWrite"
-  ],
-
   "browser_action": {
     "default_icon": "icons/icon.png",
     "default_title": "curlify"
-  },
-
-  "background": {
-    "scripts": ["background.js"]
   }
-
 }
 
