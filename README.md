@@ -25,3 +25,7 @@ $ npm run build:firefox
 ```
 
 After building either install it directly inside Chrome or for Firefox you can use [`web-ext`](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext) to try the extension immediately.
+
+## Credits
+
+Icon workout by Becris from the Noun Project.
